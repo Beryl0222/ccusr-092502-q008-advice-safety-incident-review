@@ -1,0 +1,27 @@
+{
+  "service": "advice-safety-incident-review",
+  "entities": [
+    "safety_incident",
+    "evidence_snapshot",
+    "review_opinion",
+    "exposure_notice"
+  ],
+  "events": [
+    "INCIDENT_REPORTED",
+    "EVIDENCE_FROZEN",
+    "OPINION_SIGNED",
+    "IMPACT_DECIDED",
+    "NOTICE_ACKNOWLEDGED"
+  ],
+  "envelope": {
+    "required": [
+      "event_id",
+      "event_type",
+      "occurred_at",
+      "aggregate_id",
+      "version",
+      "payload"
+    ],
+    "version_minimum": 1
+  }
+}

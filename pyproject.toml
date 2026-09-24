@@ -1,0 +1,6 @@
+[project]
+name = "advice-safety-incident-review"
+version = "0.1.0"
+description = "问诊建议安全事件复盘的领域事件边界"
+requires-python = ">=3.11"
+dependencies = []
