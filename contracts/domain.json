@@ -1,18 +1,113 @@
 {
   "service": "advice-safety-incident-review",
+  "description": "问诊建议安全事件复盘：只负责事件调查、证据与结论的确定交接，不产生新的诊断或治疗建议。",
+  "roles": [
+    "investigator",
+    "clinical_safety",
+    "product_owner"
+  ],
   "entities": [
     "safety_incident",
     "evidence_snapshot",
     "review_opinion",
-    "exposure_notice"
+    "safety_notice",
+    "final_action",
+    "exposure_notice",
+    "notification_receipt",
+    "review_task"
   ],
   "events": [
     "INCIDENT_REPORTED",
+    "REPORT_MERGED",
     "EVIDENCE_FROZEN",
+    "EVIDENCE_APPENDED",
     "OPINION_SIGNED",
+    "OBJECTION_RAISED",
     "IMPACT_DECIDED",
-    "NOTICE_ACKNOWLEDGED"
+    "MINIMAL_NOTICE_PUBLISHED",
+    "FINAL_ACTION_DECIDED",
+    "NOTICE_PLANNED",
+    "NOTICE_ACKNOWLEDGED",
+    "RECORD_CHANGE_REJECTED"
   ],
+  "payload_fields": {
+    "INCIDENT_REPORTED": [
+      "report_id",
+      "reporter",
+      "advice_version_id",
+      "question_context",
+      "known_history",
+      "clinical_opinion",
+      "patient_decision",
+      "outcome",
+      "follow_up"
+    ],
+    "REPORT_MERGED": [
+      "report_id",
+      "reporter",
+      "merged_into",
+      "duplicate_key"
+    ],
+    "EVIDENCE_FROZEN": [
+      "frozen_by",
+      "evidence_refs",
+      "scope_hash"
+    ],
+    "EVIDENCE_APPENDED": [
+      "append_id",
+      "submitted_by",
+      "evidence_refs",
+      "reason"
+    ],
+    "OPINION_SIGNED": [
+      "opinion_id",
+      "reviewer_id",
+      "risk_level",
+      "rationale",
+      "signed_record_ref"
+    ],
+    "OBJECTION_RAISED": [
+      "objection_id",
+      "raised_by",
+      "content"
+    ],
+    "IMPACT_DECIDED": [
+      "decision_id",
+      "owner_id",
+      "affected_versions",
+      "rationale"
+    ],
+    "MINIMAL_NOTICE_PUBLISHED": [
+      "notice_id",
+      "published_by",
+      "message",
+      "versions"
+    ],
+    "FINAL_ACTION_DECIDED": [
+      "action_id",
+      "action",
+      "rationale",
+      "covered_versions",
+      "basis_event_versions"
+    ],
+    "NOTICE_PLANNED": [
+      "plan_id",
+      "action_id",
+      "conclusion_signature",
+      "recipients"
+    ],
+    "NOTICE_ACKNOWLEDGED": [
+      "plan_id",
+      "recipient",
+      "gateway",
+      "status"
+    ],
+    "RECORD_CHANGE_REJECTED": [
+      "opinion_id",
+      "requested_by",
+      "reason"
+    ]
+  },
   "envelope": {
     "required": [
       "event_id",
